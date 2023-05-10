@@ -9,7 +9,7 @@ export function Editor() {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        document: false,
+        document: false, // Para não usar o document default do StarterKit
       }),
       Highlight,
       Typography,

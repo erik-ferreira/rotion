@@ -1,18 +1,26 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import * as Collapsible from "@radix-ui/react-collapsible";
 
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 
 export function DefaultLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
-    <div className="w-screen h-screen bg-rotion-900 text-rotion-100 flex">
+    <Collapsible.Root
+      defaultOpen
+      onOpenChange={setIsSidebarOpen}
+      className="w-screen h-screen bg-rotion-900 text-rotion-100 flex"
+    >
       <Sidebar />
 
       <div className="flex-1 flex flex-col max-h-screen">
-        <Header />
+        <Header isSidebarOpen={isSidebarOpen} />
 
         <Outlet />
       </div>
-    </div>
+    </Collapsible.Root>
   );
 }
