@@ -12,7 +12,7 @@ export function Document() {
         <ToC.Root>
           <ToC.Link>Front-end</ToC.Link>
           <ToC.Section>
-            <ToC.Link>Estilização/Responsividade</ToC.Link>
+            <ToC.Link>Estilização</ToC.Link>
             <ToC.Link>Acessibilidade</ToC.Link>
           </ToC.Section>
         </ToC.Root>

@@ -27,8 +27,7 @@ export function Editor() {
     autofocus: "end",
     editorProps: {
       attributes: {
-        class: "prose prose-invert prose-headings:mt-0",
-        // class: "focus:outline-none prose prose-invert prose-headings:mt-0",
+        class: "focus:outline-none prose prose-invert prose-headings:mt-0",
       },
     },
   });
