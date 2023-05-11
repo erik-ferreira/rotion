@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { electronAPI, ElectronAPI } from "@electron-toolkit/preload";
 
+import { IPC } from "../shared/constants/ipc";
+import { FetchAllDocumentsResponse } from "../shared/types/ipc";
+
 // eslint-disable-next-line prettier/prettier
 declare global {
   export interface Window {
@@ -10,8 +13,8 @@ declare global {
 }
 
 const api = {
-  fetchDocument(): Promise<Array<{ id: string; title: string }>> {
-    return ipcRenderer.invoke("fetch-document");
+  fetchDocument(): Promise<FetchAllDocumentsResponse> {
+    return ipcRenderer.invoke(IPC.DOCUMENT.FETCH_ALL);
   },
 };
 
