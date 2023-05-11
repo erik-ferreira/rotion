@@ -11,7 +11,8 @@ import * as Navigation from "./Navigation";
 export function Sidebar() {
   const isMacOS = process.platform === "darwin";
 
-  const { data } = useQuery(["document"], async () => {
+  const { data } = useQuery(["documents"], async () => {
+    console.log("request");
     const response = await window.api.fetchDocuments();
 
     return response.data;
