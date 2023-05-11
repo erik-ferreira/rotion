@@ -1,12 +1,24 @@
-import { contextBridge } from "electron";
-import { electronAPI } from "@electron-toolkit/preload";
+import { contextBridge, ipcRenderer } from "electron";
+import { electronAPI, ElectronAPI } from "@electron-toolkit/preload";
 
-// Custom APIs for renderer
-const api = {};
+// eslint-disable-next-line prettier/prettier
+declare global {
+  export interface Window {
+    electron: ElectronAPI;
+    api: typeof api;
+  }
+}
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
+const api = {
+  fetchDocument(params: any) {
+    return ipcRenderer.send("fetch-document", params);
+  },
+
+  getList() {
+    return ipcRenderer.invoke("get-list");
+  },
+};
+
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld("electron", electronAPI);
