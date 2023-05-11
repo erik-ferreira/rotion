@@ -2,7 +2,14 @@ import { contextBridge, ipcRenderer } from "electron";
 import { electronAPI, ElectronAPI } from "@electron-toolkit/preload";
 
 import { IPC } from "../shared/constants/ipc";
-import { FetchAllDocumentsResponse } from "../shared/types/ipc";
+import {
+  SaveDocumentRequest,
+  FetchDocumentRequest,
+  DeleteDocumentRequest,
+  FetchDocumentResponse,
+  CreateDocumentResponse,
+  FetchAllDocumentsResponse,
+} from "../shared/types/ipc";
 
 // eslint-disable-next-line prettier/prettier
 declare global {
@@ -13,8 +20,24 @@ declare global {
 }
 
 const api = {
-  fetchDocument(): Promise<FetchAllDocumentsResponse> {
+  fetchDocuments(): Promise<FetchAllDocumentsResponse> {
     return ipcRenderer.invoke(IPC.DOCUMENT.FETCH_ALL);
+  },
+
+  fetchDocument(req: FetchDocumentRequest): Promise<FetchDocumentResponse> {
+    return ipcRenderer.invoke(IPC.DOCUMENT.FETCH);
+  },
+
+  createDocument(): Promise<CreateDocumentResponse> {
+    return ipcRenderer.invoke(IPC.DOCUMENT.CREATE);
+  },
+
+  saveDocument(req: SaveDocumentRequest): Promise<void> {
+    return ipcRenderer.invoke(IPC.DOCUMENT.SAVE);
+  },
+
+  deleteDocument(req: DeleteDocumentRequest): Promise<void> {
+    return ipcRenderer.invoke(IPC.DOCUMENT.DELETE);
   },
 };
 
