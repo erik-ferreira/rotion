@@ -12,7 +12,6 @@ export function Sidebar() {
   const isMacOS = process.platform === "darwin";
 
   const { data } = useQuery(["documents"], async () => {
-    console.log("request");
     const response = await window.api.fetchDocuments();
 
     return response.data;
@@ -57,7 +56,10 @@ export function Sidebar() {
             <Navigation.SectionTitle>Workspace</Navigation.SectionTitle>
             <Navigation.SectionContent>
               {data?.map((document) => (
-                <Navigation.Link key={document.id}>
+                <Navigation.Link
+                  to={`/documents/${document.id}`}
+                  key={document.id}
+                >
                   {document.title}
                 </Navigation.Link>
               ))}

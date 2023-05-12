@@ -5,7 +5,11 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Document from "@tiptap/extension-document";
 import { EditorContent, useEditor } from "@tiptap/react";
 
-export function Editor() {
+interface EditorProps {
+  content: string;
+}
+
+export function Editor({ content }: EditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -22,8 +26,7 @@ export function Editor() {
         content: "heading block*",
       }),
     ],
-    content:
-      "<h1>Front-end</h1><p>Esse é o documento que explica sobre front-end</p>",
+    content,
     autofocus: "end",
     editorProps: {
       attributes: {

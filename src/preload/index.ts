@@ -25,7 +25,7 @@ const api = {
   },
 
   fetchDocument(req: FetchDocumentRequest): Promise<FetchDocumentResponse> {
-    return ipcRenderer.invoke(IPC.DOCUMENT.FETCH);
+    return ipcRenderer.invoke(IPC.DOCUMENT.FETCH, req);
   },
 
   createDocument(): Promise<CreateDocumentResponse> {
@@ -33,11 +33,11 @@ const api = {
   },
 
   saveDocument(req: SaveDocumentRequest): Promise<void> {
-    return ipcRenderer.invoke(IPC.DOCUMENT.SAVE);
+    return ipcRenderer.invoke(IPC.DOCUMENT.SAVE, req);
   },
 
   deleteDocument(req: DeleteDocumentRequest): Promise<void> {
-    return ipcRenderer.invoke(IPC.DOCUMENT.DELETE);
+    return ipcRenderer.invoke(IPC.DOCUMENT.DELETE, req);
   },
 };
 
