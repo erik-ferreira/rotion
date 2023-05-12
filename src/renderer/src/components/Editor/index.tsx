@@ -5,11 +5,17 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Document from "@tiptap/extension-document";
 import { EditorContent, useEditor } from "@tiptap/react";
 
-interface EditorProps {
+export interface OnContentUpdatedParams {
+  title: string;
   content: string;
 }
 
-export function Editor({ content }: EditorProps) {
+interface EditorProps {
+  content: string;
+  onContentUpdated: (params: OnContentUpdatedParams) => void;
+}
+
+export function Editor({ content, onContentUpdated }: EditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -26,6 +32,18 @@ export function Editor({ content }: EditorProps) {
         content: "heading block*",
       }),
     ],
+    onUpdate: ({ editor }) => {
+      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/;
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups;
+
+      const title = parsedContent?.title ?? "Untitled";
+      const content = parsedContent?.content ?? "";
+
+      onContentUpdated({
+        title,
+        content,
+      });
+    },
     content,
     autofocus: "end",
     editorProps: {
