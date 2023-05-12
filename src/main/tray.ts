@@ -2,7 +2,9 @@ import { app, Menu, Tray } from "electron";
 import path from "node:path";
 
 app.whenReady().then(() => {
-  const tray = new Tray(path.resolve(__dirname, "rotionTemplate.png"));
+  const tray = new Tray(
+    path.resolve(__dirname, "../../resources/rotionTemplate.png")
+  );
 
   const contextMenu = Menu.buildFromTemplate([
     { label: "Rotion", enabled: false },

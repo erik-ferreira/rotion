@@ -44,7 +44,6 @@ export function Header({ isSidebarOpen }: HeaderProps) {
           "pl-24": !isSidebarOpen && isMacOS,
           "w-screen": !isSidebarOpen,
           "w-[calc(100vw-240px)]": isSidebarOpen,
-          // eslint-disable-next-line prettier/prettier
         }
       )}
     >

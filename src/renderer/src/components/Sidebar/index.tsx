@@ -25,7 +25,6 @@ export function Sidebar() {
           {
             "top-[1.125rem]": isMacOS,
             "top-6": !isMacOS,
-            // eslint-disable-next-line prettier/prettier
           }
         )}
       >
@@ -44,7 +43,6 @@ export function Sidebar() {
           "flex-1 flex flex-col gap-8 h-full w-[240px] group-data-[state=open]:opacity-100 group-data-[state=closed]:opacity-0 transition-opacity duration-200",
           {
             "pt-6": !isMacOS,
-            // eslint-disable-next-line prettier/prettier
           }
         )}
       >

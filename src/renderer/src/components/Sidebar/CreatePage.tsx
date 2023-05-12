@@ -26,7 +26,6 @@ export function CreatePage() {
 
           navigate(`/documents/${data.id}`);
         },
-        // eslint-disable-next-line prettier/prettier
       }
     );
 

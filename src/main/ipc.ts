@@ -19,7 +19,6 @@ ipcMain.handle(
     return {
       data: Object.values(store.get("documents")),
     };
-    // eslint-disable-next-line prettier/prettier
   }
 );
 
@@ -31,7 +30,6 @@ ipcMain.handle(
     return {
       data: document,
     };
-    // eslint-disable-next-line prettier/prettier
   }
 );
 
@@ -47,7 +45,6 @@ ipcMain.handle(
     return {
       data: document,
     };
-    // eslint-disable-next-line prettier/prettier
   }
 );
 
@@ -55,7 +52,6 @@ ipcMain.handle(
   IPC.DOCUMENT.SAVE,
   async (_, { id, title, content }: SaveDocumentRequest): Promise<void> => {
     store.set(`documents.${id}`, { id, title, content });
-    // eslint-disable-next-line prettier/prettier
   }
 );
 
@@ -64,6 +60,5 @@ ipcMain.handle(
   async (_, { id }: DeleteDocumentRequest): Promise<void> => {
     // @ts-ignore (https://github.com/sindresorhus/electron-store/issues/196)
     store.delete(`documents.${id}`);
-    // eslint-disable-next-line prettier/prettier
   }
 );
