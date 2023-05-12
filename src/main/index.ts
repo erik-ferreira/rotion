@@ -1,11 +1,11 @@
-import { app, shell, BrowserWindow } from "electron";
 import path from "node:path";
-import { createFileRoute, createURLRoute } from "electron-router-dom";
+import { app, shell, BrowserWindow } from "electron";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
+import { createFileRoute, createURLRoute } from "electron-router-dom";
 
 import "./ipc";
 import "./store";
-import "./tray";
+import { createTray } from "./tray";
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -31,6 +31,8 @@ function createWindow(): void {
       sandbox: false,
     },
   });
+
+  createTray(mainWindow);
 
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
