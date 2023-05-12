@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Plus } from "phosphor-react";
 import { Document } from "@/shared/types/ipc";
+import { useNavigate } from "react-router-dom";
 
 export function CreatePage() {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { isLoading: isCreatingNewDocument, mutateAsync: createDocument } =
     useMutation(
@@ -21,6 +23,8 @@ export function CreatePage() {
               return [data];
             }
           });
+
+          navigate(`/documents/${data.id}`);
         },
         // eslint-disable-next-line prettier/prettier
       }
