@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from "react"
+import clsx from "clsx"
 
 interface ItemProps {
-  isActive?: boolean;
-  children: ReactNode;
+  isActive?: boolean
+  children: ReactNode
 }
 
 export function Item({ isActive = false, children }: ItemProps) {
-  const Comp = isActive ? "span" : "a";
+  const Comp = isActive ? "span" : "a"
 
   return (
     <Comp
@@ -18,5 +18,5 @@ export function Item({ isActive = false, children }: ItemProps) {
     >
       {children}
     </Comp>
-  );
+  )
 }

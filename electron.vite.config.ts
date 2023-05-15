@@ -1,12 +1,12 @@
-import path from "node:path";
-import tailwindcss from "tailwindcss";
-import react from "@vitejs/plugin-react";
-import tsConfigsPathsPlugin from "vite-tsconfig-paths";
-import { defineConfig, externalizeDepsPlugin } from "electron-vite";
+import path from "node:path"
+import tailwindcss from "tailwindcss"
+import react from "@vitejs/plugin-react"
+import tsConfigsPathsPlugin from "vite-tsconfig-paths"
+import { defineConfig, externalizeDepsPlugin } from "electron-vite"
 
 const tsConfigPaths = tsConfigsPathsPlugin({
   projects: [path.resolve("tsconfig.json")],
-});
+})
 
 export default defineConfig({
   main: {
@@ -40,4 +40,4 @@ export default defineConfig({
       port: 3000,
     },
   },
-});
+})

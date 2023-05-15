@@ -1,38 +1,39 @@
-import { Command } from "cmdk";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { File, MagnifyingGlass } from "phosphor-react";
+import { Command } from "cmdk"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+import { File, MagnifyingGlass } from "phosphor-react"
 
 interface SearchBarProps {
-  open: boolean;
-  onOpenChange: (isOpen: boolean) => void;
+  open: boolean
+  onOpenChange: (isOpen: boolean) => void
 }
 
 export function SearchBar({ open, onOpenChange }: SearchBarProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const { data } = useQuery(["documents"], async () => {
-    const response = await window.api.fetchDocuments();
+    const response = await window.api.fetchDocuments()
 
-    return response.data;
-  });
+    return response.data
+  })
 
   function handleOpenDocument(id: string) {
-    navigate(`/documents/${id}`);
-    onOpenChange(false);
+    navigate(`/documents/${id}`)
+    onOpenChange(false)
   }
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && e.metaKey) {
-        onOpenChange(!open);
-      }
-    };
+      console.log("keyboardevent", e)
+      // if (e.key === "k" && e.metaKey) {
+      //   onOpenChange(!open);
+      // }
+    }
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, [onOpenChange, open]);
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [onOpenChange, open])
 
   return (
     <Command.Dialog
@@ -66,5 +67,5 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
         ))}
       </Command.List>
     </Command.Dialog>
-  );
+  )
 }

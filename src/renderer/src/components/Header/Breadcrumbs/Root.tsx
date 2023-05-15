@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 interface RootProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function Root(props: RootProps) {
@@ -11,5 +11,5 @@ export function Root(props: RootProps) {
         {props.children}
       </div>
     </div>
-  );
+  )
 }

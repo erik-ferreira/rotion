@@ -1,11 +1,11 @@
-import clsx from "clsx";
-import { ReactNode } from "react";
-import { NavLink } from "react-router-dom";
-import { DotsThree } from "phosphor-react";
+import clsx from "clsx"
+import { ReactNode } from "react"
+import { NavLink } from "react-router-dom"
+import { DotsThree } from "phosphor-react"
 
 interface LinkProps {
-  to: string;
-  children: ReactNode;
+  to: string
+  children: ReactNode
 }
 
 export function Link({ children, to }: LinkProps) {
@@ -18,7 +18,7 @@ export function Link({ children, to }: LinkProps) {
           {
             "bg-rotion-700": isActive,
           }
-        );
+        )
       }}
     >
       <span className="truncate flex-1">{children}</span>
@@ -29,5 +29,5 @@ export function Link({ children, to }: LinkProps) {
         </button>
       </div>
     </NavLink>
-  );
+  )
 }

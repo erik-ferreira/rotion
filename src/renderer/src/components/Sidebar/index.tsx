@@ -1,21 +1,21 @@
-import clsx from "clsx";
-import { useQuery } from "@tanstack/react-query";
-import { CaretDoubleLeft } from "phosphor-react";
-import * as Collapsible from "@radix-ui/react-collapsible";
+import clsx from "clsx"
+import { useQuery } from "@tanstack/react-query"
+import { CaretDoubleLeft } from "phosphor-react"
+import * as Collapsible from "@radix-ui/react-collapsible"
 
-import { Search } from "./Search";
-import { Profile } from "./Profile";
-import { CreatePage } from "./CreatePage";
-import * as Navigation from "./Navigation";
+import { Search } from "./Search"
+import { Profile } from "./Profile"
+import { CreatePage } from "./CreatePage"
+import * as Navigation from "./Navigation"
 
 export function Sidebar() {
-  const isMacOS = process.platform === "darwin";
+  const isMacOS = process.platform === "darwin"
 
   const { data } = useQuery(["documents"], async () => {
-    const response = await window.api.fetchDocuments();
+    const response = await window.api.fetchDocuments()
 
-    return response.data;
-  });
+    return response.data
+  })
 
   return (
     <Collapsible.Content className="bg-rotion-800 flex-shrink-0 border-r border-rotion-600 h-screen relative group data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut overflow-hidden">
@@ -68,5 +68,5 @@ export function Sidebar() {
         <CreatePage />
       </div>
     </Collapsible.Content>
-  );
+  )
 }

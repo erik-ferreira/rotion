@@ -1,7 +1,7 @@
-import { CaretDown, User } from "phosphor-react";
+import { CaretDown, User } from "phosphor-react"
 
 export function Profile() {
-  const isAuthenticated = false;
+  const isAuthenticated = false
 
   if (!isAuthenticated) {
     return (
@@ -11,7 +11,7 @@ export function Profile() {
         </div>
         Fazer login
       </button>
-    );
+    )
   }
 
   return (
@@ -24,5 +24,5 @@ export function Profile() {
       Diego Fernandes
       <CaretDown className="w-4 h-4 text-rotion-100 group-hover:text-rotion-50" />
     </button>
-  );
+  )
 }

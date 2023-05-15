@@ -1,3 +1,3 @@
 export function HiddenItems() {
-  return <span>...</span>;
+  return <span>...</span>
 }

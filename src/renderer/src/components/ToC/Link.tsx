@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 interface ToCLinkProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function ToCLink(props: ToCLinkProps) {
-  return <a href="#" className="hover:text-rotion-50" {...props} />;
+  return <a href="#" className="hover:text-rotion-50" {...props} />
 }

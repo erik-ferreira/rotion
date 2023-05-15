@@ -1,9 +1,9 @@
-import { Router, Route } from "electron-router-dom";
+import { Router, Route } from "electron-router-dom"
 
-import { Blank } from "./pages/blank";
-import { Document } from "./pages/document";
+import { Blank } from "./pages/blank"
+import { Document } from "./pages/document"
 
-import { DefaultLayout } from "./layout/default";
+import { DefaultLayout } from "./layout/default"
 
 export function Routes() {
   return (
@@ -15,5 +15,5 @@ export function Routes() {
         </Route>
       }
     />
-  );
+  )
 }

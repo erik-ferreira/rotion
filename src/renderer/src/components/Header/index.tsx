@@ -1,38 +1,38 @@
-import clsx from "clsx";
-import { useNavigate, useParams } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import * as Collapsible from "@radix-ui/react-collapsible";
-import { Code, CaretDoubleRight, TrashSimple } from "phosphor-react";
+import clsx from "clsx"
+import { useNavigate, useParams } from "react-router-dom"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import * as Collapsible from "@radix-ui/react-collapsible"
+import { Code, CaretDoubleRight, TrashSimple } from "phosphor-react"
 
-import * as Breadcrumbs from "./Breadcrumbs";
-import { Document } from "@/shared/types/ipc";
+import * as Breadcrumbs from "./Breadcrumbs"
+import { Document } from "@/shared/types/ipc"
 
 interface HeaderProps {
-  isSidebarOpen: boolean;
+  isSidebarOpen: boolean
 }
 
 export function Header({ isSidebarOpen }: HeaderProps) {
-  const { id } = useParams<{ id: string }>();
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>()
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const { mutateAsync: deleteDocument, isLoading: isDeletingDocument } =
     useMutation(
       async () => {
-        await window.api.deleteDocument({ id: id! });
+        await window.api.deleteDocument({ id: id! })
       },
       {
         onSuccess: () => {
           queryClient.setQueriesData<Document[]>(["documents"], (documents) => {
-            return documents?.filter((document) => document.id !== id);
-          });
+            return documents?.filter((document) => document.id !== id)
+          })
 
-          navigate("/");
+          navigate("/")
         },
       }
-    );
+    )
 
-  const isMacOS = process.platform === "darwin";
+  const isMacOS = process.platform === "darwin"
 
   return (
     <div
@@ -83,5 +83,5 @@ export function Header({ isSidebarOpen }: HeaderProps) {
         </>
       )}
     </div>
-  );
+  )
 }

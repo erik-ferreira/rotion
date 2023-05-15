@@ -1,46 +1,46 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Plus } from "phosphor-react";
-import { Document } from "@/shared/types/ipc";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { Plus } from "phosphor-react"
+import { Document } from "@/shared/types/ipc"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 export function CreatePage() {
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const { isLoading: isCreatingNewDocument, mutateAsync: createDocument } =
     useMutation(
       async () => {
-        const response = await window.api.createDocument();
+        const response = await window.api.createDocument()
 
-        return response.data;
+        return response.data
       },
       {
         onSuccess: (data) => {
           queryClient.setQueriesData<Document[]>(["documents"], (documents) => {
             if (documents && documents.length >= 0) {
-              return [...documents, data];
+              return [...documents, data]
             } else {
-              return [data];
+              return [data]
             }
-          });
+          })
 
-          navigate(`/documents/${data.id}`);
+          navigate(`/documents/${data.id}`)
         },
       }
-    );
+    )
 
   useEffect(() => {
     function newDocument() {
-      createDocument();
+      createDocument()
     }
 
-    const unsubscribe = window.api.onNewDocumentRequest(newDocument);
+    const unsubscribe = window.api.onNewDocumentRequest(newDocument)
 
     return () => {
-      unsubscribe();
-    };
-  }, [createDocument]);
+      unsubscribe()
+    }
+  }, [createDocument])
 
   return (
     <button
@@ -51,5 +51,5 @@ export function CreatePage() {
       <Plus className="h-4 w-4" />
       Novo Documento
     </button>
-  );
+  )
 }

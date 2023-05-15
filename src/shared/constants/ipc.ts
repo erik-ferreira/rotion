@@ -6,4 +6,4 @@ export const IPC = {
     SAVE: "documents: save",
     DELETE: "documents: delete",
   },
-};
+}

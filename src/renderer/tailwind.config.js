@@ -1,4 +1,4 @@
-const plugin = require("tailwindcss/plugin");
+const plugin = require("tailwindcss/plugin")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -53,7 +53,7 @@ module.exports = {
         ".region-no-drag": {
           "-webkit-app-region": "no-drag",
         },
-      });
+      })
     }),
   ],
-};
+}

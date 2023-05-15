@@ -1,18 +1,18 @@
-import StarterKit from "@tiptap/starter-kit";
-import Highlight from "@tiptap/extension-highlight";
-import Typography from "@tiptap/extension-typography";
-import Placeholder from "@tiptap/extension-placeholder";
-import Document from "@tiptap/extension-document";
-import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit"
+import Highlight from "@tiptap/extension-highlight"
+import Typography from "@tiptap/extension-typography"
+import Placeholder from "@tiptap/extension-placeholder"
+import Document from "@tiptap/extension-document"
+import { EditorContent, useEditor } from "@tiptap/react"
 
 export interface OnContentUpdatedParams {
-  title: string;
-  content: string;
+  title: string
+  content: string
 }
 
 interface EditorProps {
-  content: string;
-  onContentUpdated: (params: OnContentUpdatedParams) => void;
+  content: string
+  onContentUpdated: (params: OnContentUpdatedParams) => void
 }
 
 export function Editor({ content, onContentUpdated }: EditorProps) {
@@ -33,16 +33,16 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
       }),
     ],
     onUpdate: ({ editor }) => {
-      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/;
-      const parsedContent = editor.getHTML().match(contentRegex)?.groups;
+      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups
 
-      const title = parsedContent?.title ?? "Untitled";
-      const content = parsedContent?.content ?? "";
+      const title = parsedContent?.title ?? "Untitled"
+      const content = parsedContent?.content ?? ""
 
       onContentUpdated({
         title,
         content,
-      });
+      })
     },
     content,
     autofocus: "end",
@@ -51,7 +51,7 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
         class: "focus:outline-none prose prose-invert prose-headings:mt-0",
       },
     },
-  });
+  })
 
-  return <EditorContent className="w-[65ch]" editor={editor} />;
+  return <EditorContent className="w-[65ch]" editor={editor} />
 }

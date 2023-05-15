@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 interface ToCRootProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function ToCRoot(props: ToCRootProps) {
@@ -10,5 +10,5 @@ export function ToCRoot(props: ToCRootProps) {
       className="flex flex-col text-sm text-rotion-100 gap-2 mt-2"
       {...props}
     />
-  );
+  )
 }
