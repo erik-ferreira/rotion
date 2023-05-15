@@ -19,7 +19,6 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   const { mutateAsync: deleteDocument, isLoading: isDeletingDocument } =
     useMutation(
       async () => {
-        // eslint-disable-next-line prettier/prettier
         await window.api.deleteDocument({ id: id! });
       },
       {

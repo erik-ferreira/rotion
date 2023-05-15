@@ -12,7 +12,6 @@ export function Document() {
   const queryClient = useQueryClient();
 
   const { data, isFetching } = useQuery(["document", id], async () => {
-    // eslint-disable-next-line prettier/prettier
     const response = await window.api.fetchDocument({ id: id! });
 
     return response.data;

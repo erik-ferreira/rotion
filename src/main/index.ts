@@ -46,7 +46,6 @@ function createWindow(): void {
   });
 
   const devServerURL = createURLRoute(
-    // eslint-disable-next-line prettier/prettier
     process.env.ELECTRON_RENDERER_URL!,
     "main"
   );

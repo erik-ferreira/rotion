@@ -10,7 +10,6 @@ import {
   FetchAllDocumentsResponse,
 } from "../shared/types/ipc";
 
-// eslint-disable-next-line prettier/prettier
 declare global {
   export interface Window {
     api: typeof api;
