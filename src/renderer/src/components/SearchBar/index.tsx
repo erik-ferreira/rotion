@@ -25,10 +25,12 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      console.log("keyboardevent", e)
-      // if (e.key === "k" && e.metaKey) {
-      //   onOpenChange(!open);
-      // }
+      const metaKeyOrCtrlKeyIsPressed =
+        process.platform === "darwin" ? e.metaKey : e.ctrlKey
+
+      if (e.key === "k" && metaKeyOrCtrlKeyIsPressed) {
+        onOpenChange(!open)
+      }
     }
 
     document.addEventListener("keydown", down)
@@ -50,7 +52,7 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
           className="w-full bg-transparent focus:outline-none text-sm text-rotion-50 placeholder:text-rotion-200"
         />
       </div>
-      <Command.List className="py-2 max-h-48 scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800">
+      <Command.List className="py-2 max-h-48 overflow-y-scroll scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800">
         <Command.Empty className="py-3 px-4 text-rotion-200 text-sm">
           Nenhum documento encontrado.
         </Command.Empty>
