@@ -1,7 +1,14 @@
+export interface Heading {
+  id: number
+  content: string | undefined
+  level: number
+}
+
 export interface Document {
   id: string
   title: string
   content?: string
+  headings?: Heading[]
 }
 
 /**

@@ -1,13 +1,16 @@
 import StarterKit from "@tiptap/starter-kit"
+import Document from "@tiptap/extension-document"
 import Highlight from "@tiptap/extension-highlight"
 import Typography from "@tiptap/extension-typography"
 import Placeholder from "@tiptap/extension-placeholder"
-import Document from "@tiptap/extension-document"
 import { EditorContent, useEditor } from "@tiptap/react"
+
+import { Heading } from "@shared/types/ipc"
 
 export interface OnContentUpdatedParams {
   title: string
   content: string
+  headings: Heading[]
 }
 
 interface EditorProps {
@@ -39,9 +42,22 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
       const title = parsedContent?.title ?? "Untitled"
       const content = parsedContent?.content ?? ""
 
+      // headings to table of contents
+      const headingsFilter = editor
+        .getJSON()
+        .content?.filter((item) => item.type === "heading")
+
+      const headings =
+        headingsFilter?.map((heading, index) => ({
+          id: index + 1,
+          level: heading?.attrs?.level,
+          content: heading?.content ? heading?.content[0]?.text : "",
+        })) || []
+
       onContentUpdated({
         title,
         content,
+        headings,
       })
     },
     content,

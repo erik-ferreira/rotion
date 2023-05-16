@@ -5,7 +5,8 @@
       "error",
       {
         "singleQuote": false,
-        "semi": false
+        "semi": false,
+        "endOfLine": "auto"
       }
     ]
   }

@@ -26,11 +26,11 @@ export function Document() {
   }, [data])
 
   const { mutateAsync: saveDocument } = useMutation(
-    async ({ title, content }: OnContentUpdatedParams) => {
-      await window.api.saveDocument({ id: id!, title, content })
+    async ({ title, content, headings }: OnContentUpdatedParams) => {
+      await window.api.saveDocument({ id: id!, title, content, headings })
     },
     {
-      onSuccess: (_, { title }) => {
+      onSuccess: (_, { title, headings }) => {
         queryClient.setQueriesData<IPCDocument[]>(
           ["documents"],
           (documents) => {
@@ -43,6 +43,10 @@ export function Document() {
             })
           }
         )
+
+        queryClient.setQueryData<IPCDocument>(["document", id], (document) => {
+          return document ? { ...document, headings } : document
+        })
       },
     }
   )
@@ -50,8 +54,9 @@ export function Document() {
   function handleEditorContentUpdated({
     title,
     content,
+    headings,
   }: OnContentUpdatedParams) {
-    saveDocument({ title, content })
+    saveDocument({ title, content, headings })
   }
 
   return (
@@ -62,11 +67,11 @@ export function Document() {
         </span>
 
         <ToC.Root>
-          <ToC.Link>Front-end</ToC.Link>
-          <ToC.Section>
-            <ToC.Link>Estilização</ToC.Link>
-            <ToC.Link>Acessibilidade</ToC.Link>
-          </ToC.Section>
+          {data?.headings?.map((heading) => (
+            <ToC.Link key={heading.id} level={heading.level}>
+              {heading.content}
+            </ToC.Link>
+          ))}
         </ToC.Root>
       </aside>
 

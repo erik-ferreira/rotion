@@ -38,7 +38,7 @@ ipcMain.handle(
   async (): Promise<CreateDocumentResponse> => {
     const id = randomUUID()
 
-    const document: Document = { id, title: "Untitled" }
+    const document: Document = { id, title: "Untitled", headings: [] }
 
     store.set(`documents.${id}`, document)
 
@@ -50,8 +50,11 @@ ipcMain.handle(
 
 ipcMain.handle(
   IPC.DOCUMENT.SAVE,
-  async (_, { id, title, content }: SaveDocumentRequest): Promise<void> => {
-    store.set(`documents.${id}`, { id, title, content })
+  async (
+    _,
+    { id, title, content, headings }: SaveDocumentRequest
+  ): Promise<void> => {
+    store.set(`documents.${id}`, { id, title, content, headings })
   }
 )
 

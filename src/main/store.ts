@@ -11,4 +11,4 @@ export const store = new Store<StoreType>({
   },
 })
 
-console.log(store.path)
+// console.log(store.path)

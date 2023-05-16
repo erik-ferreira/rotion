@@ -6,7 +6,7 @@ interface ToCRootProps {
 
 export function ToCRoot(props: ToCRootProps) {
   return (
-    <div
+    <ul
       className="flex flex-col text-sm text-rotion-100 gap-2 mt-2"
       {...props}
     />
